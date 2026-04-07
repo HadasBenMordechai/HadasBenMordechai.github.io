@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+
+@theme {
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+@layer base {
+  :root {
+    --animate-duration: 800ms;
+    --animate-delay: 0.5s !important;
+  }
+}
+
+@layer components {
+  section {
+    @apply text-sm lg:text-base/relaxed font-light px-5 py-8 md:p-10 lg:px-20;
+  }
+
+  h3 {
+    @apply text-xl lg:text-3xl font-normal capitalize pb-5;
+  }
+
+  h4 {
+    @apply text-[#494d1a] text-base lg:text-xl font-normal pb-4;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+}
