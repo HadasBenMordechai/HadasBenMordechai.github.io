@@ -103,7 +103,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
     <section id="about">
       <h3>About me</h3>
       <h4>
-        I am a <strong>Frontend Development</strong> specializing in the
+        I am a <strong>Frontend Developer</strong> specializing in the
         <strong>Vue.js ecosystem</strong>.
       </h4>
       <div class="flex flex-wrap items-start">

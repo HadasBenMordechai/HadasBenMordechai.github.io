@@ -18,7 +18,7 @@
     "tests/**/*.ts": "prettier --write",
     "src/**/*.{ts,js,vue}": [
       "eslint",
-      "vitest run --coverage"
+      "vitest run --coverage --passWithNoTests"
     ]
   },
   "dependencies": {
