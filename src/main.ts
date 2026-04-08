@@ -30,5 +30,5 @@ const MyPreset = definePreset(Aura, {
 
 export const createApp = ViteSSG(App, ({ app }) => {
   app.use(pinia);
-  app.use(PrimeVue, { theme: { preset: MyPreset } });
+  app.use(PrimeVue, { theme: { preset: MyPreset, options: {darkMode: false || 'none'} } });
 });
