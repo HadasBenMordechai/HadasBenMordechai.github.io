@@ -21,7 +21,8 @@
     @apply text-xl lg:text-3xl font-normal capitalize pb-5;
   }
 
-  h4 {
+  h4,
+  .h4 {
     @apply text-[#494d1a] text-base lg:text-xl font-normal pb-4;
   }
 

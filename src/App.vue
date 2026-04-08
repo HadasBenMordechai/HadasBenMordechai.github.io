@@ -229,7 +229,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
                         and consistency.
                       </li>
                       <li>
-                        <strong>Headless UI</strong> provides fully accessible, and unopinionated
+                        <strong>Headless UI</strong> provides fully accessible and unopinionated
                         complex components.
                       </li>
                       <li>
@@ -254,7 +254,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
                   <template #title>The Data</template>
                   <template #content>
                     <p>
-                      Data usually is delivered from the backend via a <strong>REST</strong> of
+                      Data usually is delivered from the backend via a <strong>REST</strong> or
                       <strong>GraphQL</strong> API.
                     </p>
                     <p>
@@ -317,6 +317,19 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
                       every commit, ensuring that only clean, formatted, and valid code reaches the
                       repository - the same guardrails I rely on in production teams.
                     </p>
+                  </template>
+                </StorySlide>
+
+                <StorySlide>
+                  <template #title>The Deployment</template>
+                  <template #content>
+                    <p>Finally, it was time to deploy!</p>
+                    <p>
+                      Since the code already lived on <strong>GitHub</strong>, I implemented a
+                      <strong>CI/CD</strong> workflow using <strong>GitHub Actions</strong> to
+                      automatically build and deploy the site to <strong>GitHub Pages</strong>.
+                    </p>
+                    <p class="h4 mt-10">And just like that - the project was live.</p>
                   </template>
                 </StorySlide>
               </swiper-container>
