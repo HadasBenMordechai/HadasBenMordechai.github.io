@@ -43,7 +43,9 @@ const swiperOptions = {
 
 const swiperBreakPoints = { 768: { slidesPerView: 1.5 }, 1500: { slidesPerView: 2.3 } };
 
-const loadSwiper = async () => {
+const loadSwiper = async (visible: boolean) => {
+  if (!visible) return;
+
   const swiper = await import('swiper/element/bundle');
   swiper.register();
 };

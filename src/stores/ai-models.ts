@@ -16,11 +16,6 @@ export const useAiModelsStore = defineStore('aiModels', () => {
 
     try {
       const res = await fetchWithFallback('https://openrouter.ai/api/v1/models', modelsUrl);
-
-      if (!res.ok) {
-        throw new Error('Failed to fetch data');
-      }
-
       const data = await res.json();
       // normalize data to match AiModel interface
       aiModels.value = data.data.map((i: AiModel) => ({
