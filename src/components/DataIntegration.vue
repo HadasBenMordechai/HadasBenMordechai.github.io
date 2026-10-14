@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 
-import { useClipboard } from '@vueuse/core';
+import { useClipboard, useEventListener } from '@vueuse/core';
 
 import { default as PVDataTable } from 'primevue/datatable';
 import { default as PVIconField } from 'primevue/iconfield';
@@ -26,7 +26,7 @@ onMounted(() => {
 
 const isMobile = ref(window.innerWidth < 768);
 
-window.addEventListener('resize', () => {
+useEventListener(window, 'resize', () => {
   isMobile.value = window.innerWidth < 768;
 });
 
@@ -116,13 +116,20 @@ const formatRelative = (timestamp: number) => {
   return `${Math.floor(days / 365)} years ago`;
 };
 
+const priceFormatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 const formatPrice = (pricePerToken: number): { text: string; class: string } => {
   const price = pricePerToken * 1_000_000;
-  return {
-    text: `$${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(price)} / 1M`,
-    class: getPriceCategory(price).class,
-  };
+  return { text: `$${priceFormatter.format(price)} / 1M`, class: getPriceCategory(price).class };
 };
+
+const priceRows = (pricing: AiModel['pricing']) => [
+  { label: 'Input', ...formatPrice(pricing.prompt) },
+  { label: 'Output', ...formatPrice(pricing.completion) },
+];
 
 type AiModelDescription = Pick<AiModel, 'name' | 'description'>;
 
@@ -228,26 +235,22 @@ const openDescription = (model: AiModelDescription) => {
       <PVColumn header="Pricing" class="w-[17%]">
         <template #body="{ data }">
           <template v-if="data.pricing.prompt + data.pricing.completion > 0">
-            <template v-for="k in ['prompt', 'completion']" :key="k">
-              <div v-for="p in [formatPrice(data.pricing[k])]" :key="k">
-                <span>{{ { prompt: 'Input', completion: 'Output' }[k] }}:&nbsp;</span>
-                <span :class="p.class">{{ p.text }}</span>
-              </div>
-            </template>
+            <div v-for="row in priceRows(data.pricing)" :key="row.label">
+              <span>{{ row.label }}:&nbsp;</span>
+              <span :class="row.class">{{ row.text }}</span>
+            </div>
           </template>
           <span
             v-else
             :class="getPriceCategory(0).class"
-            class="bg-amber-50 rounded-lg px-2 py-0.4">
+            class="bg-amber-50 rounded-lg px-2 py-0.5">
             Free
             <i class="pi pi-star" />
           </span>
         </template>
       </PVColumn>
       <PVColumn field="context_length" header="Context Length" class="w-[16%]" sortable>
-        <template #body="{ data }"
-          >{{ parseInt((data.context_length / 1000) as unknown as string) }}K Tokens</template
-        >
+        <template #body="{ data }">{{ Math.floor(data.context_length / 1000) }}K Tokens</template>
       </PVColumn>
       <PVColumn field="architecture.input_modalities" header="Input Modalities" class="w-[19%]">
         <template #body="{ data }">

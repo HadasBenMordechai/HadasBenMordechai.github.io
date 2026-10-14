@@ -15,11 +15,12 @@ export async function fetchWithFallback(
     }
 
     return response;
-  } catch (error: any) {
+  } catch (error) {
     // This catches network errors, non-OK statuses, and the timeout
-    const isTimeout = error.name === 'TimeoutError' || error.name === 'AbortError';
+    const { name, message } = error as Error;
+    const isTimeout = name === 'TimeoutError' || name === 'AbortError';
     console.warn(
-      `Primary fetch failed (${isTimeout ? 'Timed out' : error.message}). Trying fallback URL...`,
+      `Primary fetch failed (${isTimeout ? 'Timed out' : message}). Trying fallback URL...`,
     );
 
     // Attempt the fallback request
@@ -27,14 +28,17 @@ export async function fetchWithFallback(
       const response = await fetch(fallbackUrl, options);
 
       if (!response.ok) {
-        throw new Error(`Fallback request failed with status: ${response.status}`);
+        throw new Error(`Fallback request failed with status: ${response.status}`, {
+          cause: error,
+        });
       }
 
       return response;
-    } catch (fallbackError: any) {
+    } catch (fallbackError) {
       // Both requests failed
       throw new Error(
-        `Both primary and fallback requests failed. Fallback error: ${fallbackError.message}`,
+        `Both primary and fallback requests failed. Fallback error: ${(fallbackError as Error).message}`,
+        { cause: fallbackError },
       );
     }
   }
