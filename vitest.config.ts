@@ -15,12 +15,7 @@ export default mergeConfig(
         provider: 'v8',
         include: ['src/**/*.{vue,ts,js}'],
         exclude: ['**/*.d.ts'],
-        /*thresholds: {
-          statements: 99,
-          branches: 100,
-          functions: 100,
-          lines: 100,
-        },*/
+        thresholds: { statements: 100, branches: 100, functions: 100, lines: 100 },
       },
     },
   }),
