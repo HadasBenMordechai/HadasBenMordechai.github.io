@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as pinia from 'pinia';
+import type { App as VueApp } from 'vue';
 import PrimeVue from 'primevue/config';
 import App from '@/App.vue';
 
 // Use vi.hoisted to share state between the mock factory and test body
 const { viteSSGArgs } = vi.hoisted(() => ({
-  viteSSGArgs: { callback: null as ((ctx: { app: any }) => void) | null },
+  viteSSGArgs: { callback: null as ((ctx: { app: Pick<VueApp, 'use'> }) => void) | null },
 }));
 
 vi.mock('vite-ssg/single-page', () => ({
