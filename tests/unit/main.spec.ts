@@ -51,7 +51,9 @@ describe('main.ts application entry', () => {
     expect(mockApp.use).toHaveBeenCalledWith(mockPinia);
     expect(mockApp.use).toHaveBeenCalledWith(
       PrimeVue,
-      expect.objectContaining({ theme: expect.objectContaining({ preset: expect.anything() }) }),
+      expect.objectContaining({
+        theme: { preset: expect.anything(), options: { darkModeSelector: '.dark' } },
+      }),
     );
   });
 });

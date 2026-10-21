@@ -11,9 +11,20 @@
 
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link href="https://fonts.bunny.net/css?family=poppins:300,400,600,700" rel="stylesheet" />
+
+    <!-- Apply the theme before first paint to avoid a light flash (same storage key as useDark) -->
+    <script>
+      try {
+        const mode = localStorage.getItem('vueuse-color-scheme');
+        const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+        if (mode === 'dark' || ((!mode || mode === 'auto') && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch {}
+    </script>
   </head>
 
-  <body class="font-poppins bg-white text-black">
+  <body class="font-poppins bg-page text-ink">
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

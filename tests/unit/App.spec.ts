@@ -20,7 +20,10 @@ vi.mock('@/components/DataIntegration.vue', () => ({
 }));
 
 type ObserverCallback = (entries: Partial<IntersectionObserverEntry>[]) => void;
-vi.mock('@vueuse/core', () => ({ useIntersectionObserver: vi.fn() }));
+vi.mock('@vueuse/core', async importOriginal => ({
+  ...(await importOriginal<typeof import('@vueuse/core')>()),
+  useIntersectionObserver: vi.fn(),
+}));
 
 const observers: { target: Ref<Element | null>; callback: ObserverCallback }[] = [];
 

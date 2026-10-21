@@ -37,16 +37,24 @@ const outputPriceCategories = ref([] as string[]);
 
 const getPriceCategory = (pricePerM: number) => {
   if (pricePerM === 0) {
-    return { label: 'Free', value: 'free', class: 'text-amber-700' };
+    return { label: 'Free', value: 'free', class: 'text-amber-700 dark:text-amber-400' };
   }
   if (pricePerM < 1) {
-    return { label: 'Cheap (0$ - 1$)', value: 'cheap', class: 'text-green-700' };
+    return {
+      label: 'Cheap (0$ - 1$)',
+      value: 'cheap',
+      class: 'text-green-700 dark:text-green-400',
+    };
   }
   if (pricePerM < 5) {
-    return { label: 'Economic (1$ - 5$)', value: 'economic', class: 'text-orange-700' };
+    return {
+      label: 'Economic (1$ - 5$)',
+      value: 'economic',
+      class: 'text-orange-700 dark:text-orange-400',
+    };
   }
 
-  return { label: 'Expensive (5$+)', value: 'expensive', class: 'text-red-700' };
+  return { label: 'Expensive (5$+)', value: 'expensive', class: 'text-red-700 dark:text-red-400' };
 };
 
 const priceCategoryOptions = [
@@ -141,7 +149,7 @@ const openDescription = (model: AiModelDescription) => {
 </script>
 
 <template>
-  <div class="border border-gray-200 rounded-lg">
+  <div class="border border-line rounded-lg">
     <PVPanel :toggleable="isMobile" :collapsed="isMobile" header="Find Models" class="border-none!">
       <template #toggleicon>
         <i class="pi pi-filter" />
@@ -203,7 +211,7 @@ const openDescription = (model: AiModelDescription) => {
       paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
       currentPageReportTemplate="{first} to {last} of {totalRecords}"
       :pt="{ pcPaginator: { paginatorContainer: { class: 'border-b-0!' } } }"
-      class="text-xs lg:text-base px-2 sm:px-5 border-t border-gray-200 pt-2">
+      class="text-xs lg:text-base px-2 sm:px-5 border-t border-line pt-2">
       <PVColumn field="name" header="Name" class="w-[25%]" sortable>
         <template #body="{ data }">
           {{ data.name }}
@@ -218,7 +226,7 @@ const openDescription = (model: AiModelDescription) => {
                 title="Copy to clipboard" />
               <div
                 v-if="copied && text === data.name"
-                class="absolute bottom-full -start-1/4 rounded-lg text-xs bg-gray-100 text-gray-700 px-2 py-0.5 mb-1">
+                class="absolute bottom-full -start-1/4 rounded-lg text-xs bg-card text-muted px-2 py-0.5 mb-1">
                 Copied!
               </div>
             </div>
@@ -243,7 +251,7 @@ const openDescription = (model: AiModelDescription) => {
           <span
             v-else
             :class="getPriceCategory(0).class"
-            class="bg-amber-50 rounded-lg px-2 py-0.5">
+            class="bg-amber-50 dark:bg-amber-400/10 rounded-lg px-2 py-0.5">
             Free
             <i class="pi pi-star" />
           </span>
@@ -257,7 +265,7 @@ const openDescription = (model: AiModelDescription) => {
           {{ data.architecture.input_modalities.join(', ') }}
         </template>
       </PVColumn>
-      <PVColumn field="architecture.tokenizer" header="Tokenizer" class="w-[11%] text-gray-600" />
+      <PVColumn field="architecture.tokenizer" header="Tokenizer" class="w-[11%] text-muted" />
       <PVColumn header="Description" class="w-[8%]">
         <template #body="{ data }">
           <PVButton
