@@ -189,9 +189,18 @@ describe('DataIntegration', () => {
           [row]!.findAll('td')[2]!
           .findAll('span:nth-child(2)')
           .map(s => s.classes());
-      expect(priceSpans(1)).toEqual([['text-green-700'], ['text-orange-700']]);
-      expect(priceSpans(2)).toEqual([['text-orange-700'], ['text-red-700']]);
-      expect(priceSpans(4)).toEqual([['text-green-700'], ['text-amber-700']]);
+      expect(priceSpans(1)).toEqual([
+        ['text-green-700', 'dark:text-green-400'],
+        ['text-orange-700', 'dark:text-orange-400'],
+      ]);
+      expect(priceSpans(2)).toEqual([
+        ['text-orange-700', 'dark:text-orange-400'],
+        ['text-red-700', 'dark:text-red-400'],
+      ]);
+      expect(priceSpans(4)).toEqual([
+        ['text-green-700', 'dark:text-green-400'],
+        ['text-amber-700', 'dark:text-amber-400'],
+      ]);
     });
 
     it('shows the context length in thousands of tokens (rounded down)', async () => {

@@ -2,6 +2,7 @@ import { describe, it, expect, afterEach } from 'vitest';
 import { mount, flushPromises, type VueWrapper } from '@vue/test-utils';
 import AppNav from '@/components/AppNav.vue';
 import NavList from '@/components/NavList.vue';
+import ThemeToggle from '@/components/ThemeToggle.vue';
 
 describe('AppNav', () => {
   let wrapper: VueWrapper;
@@ -21,6 +22,12 @@ describe('AppNav', () => {
     expect(wrapper.findAllComponents(NavList)).toHaveLength(1);
     expect(wrapper.findAll('[aria-label="Open navbar"]')).toHaveLength(3);
     expect(wrapper.find('[aria-label="Close navbar"]').exists()).toBe(false);
+  });
+
+  it('renders the theme toggle', () => {
+    mountNav();
+
+    expect(wrapper.findComponent(ThemeToggle).exists()).toBe(true);
   });
 
   it('opens the mobile menu when the toggle is clicked', async () => {

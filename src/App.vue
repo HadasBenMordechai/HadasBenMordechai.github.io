@@ -57,7 +57,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
   <AppNav />
 
   <header
-    class="bg-indigo-50 bg-[url('@/assets/bg-pattern.png')] bg-size-[60px] md:flex items-center px-8 md:px-20 pb-3 md:pb-14 pt-16 md:pt-28">
+    class="bg-surface bg-[url('@/assets/bg-pattern.png')] dark:bg-blend-soft-light bg-size-[60px] md:flex items-center px-8 md:px-20 pb-3 md:pb-14 pt-16 md:pt-28">
     <div class="w-1/3 mx-auto">
       <img
         class="mx-auto rounded-full aspect-square object-cover"
@@ -68,7 +68,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
     </div>
     <ObserveIntersection v-slot="{ visible }" class="md:flex-1 max-md:text-center py-5 md:ps-20">
       <h1
-        class="font-bold text-2xl lg:text-4xl 2xl:text-5xl text-indigo-950"
+        class="font-bold text-2xl lg:text-4xl 2xl:text-5xl text-heading"
         :class="{ 'animate__animated animate__fadeIn': visible }">
         Hadas Ben Mordechai
       </h1>
@@ -86,14 +86,14 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
         class="flex justify-center md:justify-start text-sm lg:text-base font-light pt-5 lg:pt-10">
         <a
           href="#stack"
-          class="bg-indigo-400 hover:bg-indigo-500 hover:text-white transition-colors rounded-lg lg:rounded-xl px-3 py-1 lg:px-5 lg:py-2.5 mx-2 md:mx-0"
+          class="bg-indigo-400 text-black hover:bg-indigo-500 hover:text-white transition-colors rounded-lg lg:rounded-xl px-3 py-1 lg:px-5 lg:py-2.5 mx-2 md:mx-0"
           :class="{ 'animate__animated animate__fadeIn animate__delay-3s': visible }">
           Tech Stack
         </a>
         <a
           href="#contact"
           @click="scrollToId('contact')"
-          class="bg-indigo-100 hover:bg-indigo-200 transition-colors rounded-lg lg:rounded-xl px-3 py-1 lg:px-5 lg:py-2.5 mx-2 md:ms-4"
+          class="bg-secondary hover:bg-secondary-hover transition-colors rounded-lg lg:rounded-xl px-3 py-1 lg:px-5 lg:py-2.5 mx-2 md:ms-4"
           :class="{ 'animate__animated animate__fadeIn animate__delay-4s': visible }">
           Contact Me
         </a>
@@ -131,7 +131,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
             v-for="(l, idx) in introLinks"
             :key="l.label"
             :class="[
-              'aspect-square flex items-center justify-center bg-gray-100 hover:shadow-lg rounded-xl p-3 sm:p-5',
+              'aspect-square flex items-center justify-center bg-card hover:shadow-lg rounded-xl p-3 sm:p-5',
               visible ? `animate__animated animate__fadeIn animate__delay-${idx + 1}s` : '',
             ]"
             :href="l.link"
@@ -151,23 +151,21 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
               <button
                 class="w-36 sm:w-52 md:w-72 mx-1.5 lg:mx-2 rounded-t-xl py-2 lg:py-3 transition-colors"
                 :class="[
-                  selected
-                    ? 'bg-indigo-100'
-                    : 'bg-gray-100/80 text-gray-700 hover:text-black cursor-pointer',
+                  selected ? 'bg-secondary' : 'bg-card/80 text-muted hover:text-ink cursor-pointer',
                 ]">
                 {{ t }}
               </button>
             </Tab>
           </template>
         </TabList>
-        <TabPanels class="text-sm sm:text-base border-t-2 border-indigo-100 pt-4">
+        <TabPanels class="text-sm sm:text-base border-t-2 border-secondary pt-4">
           <TabPanel>
             <div
               class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-4 text-center">
               <div
                 v-for="t in stack"
                 :key="t.title"
-                class="bg-indigo-50/30 p-4 xl:py-10 rounded-xl shadow">
+                class="bg-surface/30 p-4 xl:py-10 rounded-xl shadow">
                 <h5 class="mb-2">{{ t.title }}</h5>
                 <p class="font-semibold">{{ t.description }}</p>
               </div>
@@ -341,7 +339,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
       </TabGroup>
     </section>
 
-    <section id="hobbies" class="bg-indigo-50 md:text-center">
+    <section id="hobbies" class="bg-surface md:text-center">
       <h3>Outside of code</h3>
       <h4>💖 My favorite things when I'm not coding:</h4>
       <ObserveIntersection
@@ -349,10 +347,10 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
         v-slot="{ visible }"
         class="grid grid-cols-3 gap-3 sm:gap-8 max-w-180 md:mx-auto text-center">
         <li
-          class="flex flex-col items-center justify-start bg-white/60 rounded-xl py-2 sm:p-5"
+          class="flex flex-col items-center justify-start bg-page/60 rounded-xl py-2 sm:p-5"
           :class="{ 'animate__animated animate__fadeIn': visible }">
           <svg
-            class="text-indigo-500 block w-9 sm:w-14 lg:w-20 h-auto p-1.5 sm:p-2 lg:p-3"
+            class="text-icon block w-9 sm:w-14 lg:w-20 h-auto p-1.5 sm:p-2 lg:p-3"
             role="none"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -368,10 +366,10 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
           <span class="block text-[0.7rem]/tight md:text-sm px-3 pt-0.5">my #1 passion!</span>
         </li>
         <li
-          class="flex flex-col items-center justify-start bg-white/60 rounded-xl py-2 sm:p-5"
+          class="flex flex-col items-center justify-start bg-page/60 rounded-xl py-2 sm:p-5"
           :class="{ 'animate__animated animate__fadeIn animate__delay-1s': visible }">
           <svg
-            class="text-indigo-500 block w-9 sm:w-14 lg:w-20 h-auto mt-1 -mb-1 lg:mt-2 lg:-mb-2"
+            class="text-icon block w-9 sm:w-14 lg:w-20 h-auto mt-1 -mb-1 lg:mt-2 lg:-mb-2"
             role="none"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -388,10 +386,10 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
           <span class="block text-[0.7rem]/tight md:text-sm px-3 pt-0.5">my newest obsession</span>
         </li>
         <li
-          class="flex flex-col items-center justify-start bg-white/60 rounded-xl py-2 sm:p-5"
+          class="flex flex-col items-center justify-start bg-page/60 rounded-xl py-2 sm:p-5"
           :class="{ 'animate__animated animate__fadeIn animate__delay-2s': visible }">
           <svg
-            class="text-indigo-500 block w-9 sm:w-14 lg:w-20 h-auto p-1.5 sm:p-2 lg:p-3"
+            class="text-icon block w-9 sm:w-14 lg:w-20 h-auto p-1.5 sm:p-2 lg:p-3"
             role="none"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -437,7 +435,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
       </ObserveIntersection>
     </section>
 
-    <section id="contact" class="bg-indigo-50/50">
+    <section id="contact" class="bg-surface/50">
       <h3>Get in touch</h3>
       <h4>I'd love to hear from you!</h4>
       <p>
@@ -445,7 +443,7 @@ const AsyncDataIntegration = defineAsyncComponent(() => import('@/components/Dat
         <a
           href="https://www.linkedin.com/in/hadas-ben-mordechai/"
           target="_blank"
-          class="inline-block underline hover:text-blue-950">
+          class="inline-block underline hover:text-blue-950 dark:hover:text-indigo-300">
           LinkedIn
         </a>
         or send me an email to hadasi135 at gmail.com.

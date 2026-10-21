@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import NavList from '@/components/NavList.vue';
+import ThemeToggle from '@/components/ThemeToggle.vue';
 </script>
 
 <template>
   <div class="fixed md:absolute inset-x-0 top-0 w-full z-40">
     <Popover v-slot="{ open, close }" class="md:hidden relative">
-      <div class="p-2" :class="{ 'bg-indigo-50': open }">
+      <div class="p-2" :class="{ 'bg-surface': open }">
         <PopoverButton
-          class="cursor-pointer text-gray-800 hover:text-black hover:bg-gray-200 transition-colors rounded-full p-0.5 aspect-square">
+          class="cursor-pointer text-muted hover:text-ink hover:bg-line transition-colors rounded-full p-0.5 aspect-square">
           <i v-if="open" aria-label="Close navbar" class="pi pi-times text-xl! w-8 m-0.5" />
           <template v-else>
             <span
@@ -25,7 +26,7 @@ import NavList from '@/components/NavList.vue';
           leave-active-class="transition duration-150 ease-in"
           leave-from-class="translate-y-0 opacity-100"
           leave-to-class="translate-y-1 opacity-0">
-          <PopoverPanel as="nav" class="absolute inset-x-0 top-full w-full pb-5 z-30 bg-indigo-50">
+          <PopoverPanel as="nav" class="absolute inset-x-0 top-full w-full pb-5 z-30 bg-surface">
             <NavList class="text-center" @clicked="close" />
           </PopoverPanel>
         </transition>
@@ -34,5 +35,6 @@ import NavList from '@/components/NavList.vue';
     <nav class="hidden md:block pt-8">
       <NavList class="flex justify-center" />
     </nav>
+    <ThemeToggle class="absolute top-2.5 end-3 md:top-9 md:end-8" />
   </div>
 </template>

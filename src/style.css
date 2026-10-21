@@ -1,14 +1,64 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-poppins: 'Poppins', sans-serif;
+}
+
+/* Semantic colors - switch between light and dark via the .dark class on <html> */
+@theme inline {
+  --color-page: var(--app-page);
+  --color-ink: var(--app-ink);
+  --color-muted: var(--app-muted);
+  --color-heading: var(--app-heading);
+  --color-accent: var(--app-accent);
+  --color-surface: var(--app-surface);
+  --color-card: var(--app-card);
+  --color-line: var(--app-line);
+  --color-secondary: var(--app-secondary);
+  --color-secondary-hover: var(--app-secondary-hover);
+  --color-icon: var(--app-icon);
 }
 
 @layer base {
   :root {
     --animate-duration: 800ms;
     --animate-delay: 0.5s !important;
+
+    --app-page: var(--color-white);
+    --app-ink: var(--color-black);
+    --app-muted: var(--color-gray-700);
+    --app-heading: var(--color-indigo-950);
+    --app-accent: #494d1a;
+    --app-surface: var(--color-indigo-50);
+    --app-card: var(--color-gray-100);
+    --app-line: var(--color-gray-200);
+    --app-secondary: var(--color-indigo-100);
+    --app-secondary-hover: var(--color-indigo-200);
+    --app-icon: var(--color-indigo-500);
+  }
+
+  /*
+   * Dark palette: custom muted indigo/navy rather than mirrored Tailwind shades
+   * (indigo-50 -> indigo-950 etc.) - the mirrored indigos are too saturated next to the grays.
+   * Keep in sync with the PrimeVue dark surface scale in main.ts.
+   */
+  .dark {
+    color-scheme: dark;
+
+    --app-page: #0f1122;
+    --app-ink: #e4e6f3;
+    --app-muted: #a3a7c7;
+    --app-heading: var(--color-indigo-100);
+    --app-accent: #d3d88c;
+    --app-surface: #171a35;
+    --app-card: #1d2142;
+    --app-line: #2b3060;
+    --app-secondary: #262b55;
+    --app-secondary-hover: #323870;
+    --app-icon: var(--color-indigo-400);
   }
 }
 
@@ -23,7 +73,7 @@
 
   h4,
   .h4 {
-    @apply text-[#494d1a] text-base lg:text-xl font-normal pb-4;
+    @apply text-accent text-base lg:text-xl font-normal pb-4;
   }
 
   strong {

@@ -30,7 +30,7 @@ export default defineComponent({
     <li v-for="l in links" :key="l.id" class="py-1 px-3">
       <a
         @click="linkClicked(l.id)"
-        class="block hover:text-indigo-800 transition-colors p-2"
+        class="block hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors p-2"
         :href="'#' + l.id">
         {{ l.txt || l.id }}
       </a>
